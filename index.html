@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles & Ressources — SUCCEED Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:   #004AAD;
+      --orange: #ED991B;
+      --green:  #2D9B4F;
+      --purple: #6B46C1;
+      --ink:    #1A1E2E;
+      --mist:   #F5F7FC;
+      --rule:   #E0E6F0;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(--ink); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--blue);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-brand img { height: 38px; border-radius: 50%; }
+    .nav-brand span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.1rem;
+      letter-spacing: .02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: var(--orange); font-weight: 500; }
+    .nav-cta {
+      background: var(--orange);
+      color: #fff !important;
+      padding: 7px 18px;
+      border-radius: 30px;
+      font-weight: 500 !important;
+    }
+    .nav-cta:hover { opacity: .9; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(145deg, #001f5c 0%, #003a8c 60%, #001f5c 100%);
+      padding: 56px 40px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 460px; height: 460px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(237,153,27,.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,155,79,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(237,153,27,.18);
+      border: 1px solid rgba(237,153,27,.38);
+      color: var(--orange);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .page-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--orange); }
+    .page-hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.78);
+      max-width: 580px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ── WAVE ── */
+    .wave-wrap { overflow: hidden; line-height: 0; }
+    .wave-wrap svg { display: block; }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-pill {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 1.5px solid var(--rule);
+      background: #fff;
+      color: #6B7A99;
+      cursor: pointer;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .filter-pill:hover { border-color: var(--blue); color: var(--blue); }
+    .filter-pill.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .filter-pill.cat-neuro  { }
+    .filter-pill.cat-ecrans { }
+    .articles-count {
+      font-size: 0.83rem;
+      color: #8A95AA;
+    }
+    .articles-count strong { color: var(--ink); }
+
+    /* ── GRID ── */
+    .articles-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 40px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── ARTICLE CARD ── */
+    .article-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .article-card:hover {
+      box-shadow: 0 12px 40px rgba(0,74,173,.1);
+      transform: translateY(-4px);
+    }
+
+    /* card thumb */
+    .card-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-thumb-icon {
+      font-size: 4.5rem;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .card-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      filter: brightness(.92);
+      z-index: 0;
+    }
+    .thumb-neuro    { background: linear-gradient(135deg, #c8d9f5 0%, #a8c0f0 100%); }
+    .thumb-ecrans   { background: linear-gradient(135deg, #fde8c8 0%, #f9cd96 100%); }
+    .thumb-code     { background: linear-gradient(135deg, #c8eedd 0%, #9fe0c0 100%); }
+    .thumb-comm     { background: linear-gradient(135deg, #e4d5f8 0%, #ccb0f4 100%); }
+
+    /* top accent bar */
+    .card-accent {
+      height: 4px;
+      width: 100%;
+    }
+    .accent-blue   { background: var(--blue); }
+    .accent-orange { background: var(--orange); }
+    .accent-green  { background: var(--green); }
+    .accent-purple { background: var(--purple); }
+
+    /* card body */
+    .card-body {
+      padding: 22px 22px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .card-cats { display: flex; gap: 6px; flex-wrap: wrap; }
+    .card-cat {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .cat-blue   { background: #EBF1FF; color: var(--blue); }
+    .cat-orange { background: #FFF4E6; color: #C07A00; }
+    .cat-green  { background: #EAF7EF; color: #1F7A3C; }
+    .cat-purple { background: #F1EBFF; color: var(--purple); }
+    .cat-red    { background: #FDEAEA; color: #A32D2D; }
+
+    .card-badge-new {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--orange);
+      color: #fff;
+    }
+    .card-badge-pop {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--green);
+      color: #fff;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.18rem;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.91rem;
+      color: #5A6678;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* card footer */
+    .card-footer {
+      padding: 14px 22px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1.5px solid var(--mist);
+      margin-top: 14px;
+    }
+    .card-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.8rem;
+      color: #8A95AA;
+    }
+    .card-info span { display: flex; align-items: center; gap: 4px; }
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 30px;
+      border: 1.5px solid var(--blue);
+      transition: all .2s;
+    }
+    .read-link:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+    .read-link svg { width: 12px; height: 12px; }
+
+    /* ── FEATURED (first card, full width) ── */
+    .article-card.featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .featured .card-thumb {
+      width: 320px;
+      height: auto;
+      flex-shrink: 0;
+      border-radius: 0;
+    }
+    .featured .card-thumb::after { display: none; }
+    .featured .card-thumb-icon { font-size: 5.5rem; }
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .featured .card-body { padding: 26px 28px 0; }
+    .featured .card-title { font-size: 1.45rem; }
+    .featured .card-desc { font-size: 0.96rem; }
+    .featured .card-footer { padding: 16px 28px 22px; }
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    /* ── HOW TO ADD (dev note) ── */
+    .add-article-note {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 40px;
+    }
+    .add-note-inner {
+      background: #fff;
+      border: 1.5px dashed var(--rule);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .add-note-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--mist);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .add-note-text h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+    .add-note-text p {
+      font-size: 0.82rem;
+      color: #8A95AA;
+      line-height: 1.6;
+    }
+    .add-note-text code {
+      font-family: monospace;
+      font-size: 0.78rem;
+      background: var(--mist);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: var(--purple);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue);
+      padding: 44px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .footer-brand img { height: 40px; border-radius: 50%; }
+    .footer-brand span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .footer-tagline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--orange);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .footer-contact { font-size: 0.82rem; color: rgba(255,255,255,.65); line-height: 1.9; }
+    .footer-contact a { color: rgba(255,255,255,.65); text-decoration: none; }
+    .footer-right { text-align: right; }
+    .footer-countries {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+    .fcountry {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.7);
+      padding: 4px 11px;
+      border-radius: 20px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .page-hero { padding: 40px 20px 52px; }
+      .filters-bar { padding: 20px 20px 0; }
+      .articles-grid { padding: 20px 20px 60px; grid-template-columns: 1fr; }
+      .article-card.featured { flex-direction: column; }
+      .featured .card-thumb { width: 100%; height: 180px; }
+      .add-article-note { padding: 0 20px; }
+      footer { padding: 36px 20px 24px; }
+      .footer-right { text-align: left; }
+      .footer-countries { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+
+    <span>SUCCEED Education</span>
+  </a>
+  <div class="nav-links">
+  <!--  <a href="#">Accueil</a>
+    <a href="#" class="active">Articles</a>
+    <a href="#">Programmes</a>
+    <a href="#">Histoires</a> 
+    -->
+    <a href="https://wa.me/237658688306" class="nav-cta">Nous rejoindre</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">✦ Ressources pédagogiques</div>
+    <h1>Le savoir qui aide<br>les parents à <em>décider</em></h1>
+    <p>Des articles fondés sur la recherche en neurosciences et pédagogie numérique, écrits pour les familles qui veulent le meilleur pour leurs enfants.</p>
+  </div>
+</section>
+
+<div class="wave-wrap">
+  <svg viewBox="0 0 1440 55" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,35 C400,70 1040,0 1440,38 L1440,55 L0,55 Z" fill="#001f5c"/>
+  </svg>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="filter-group">
+    <a href="#" class="filter-pill active">Tous les articles</a>
+    <a href="#" class="filter-pill">🧠 Neurosciences</a>
+    <a href="#" class="filter-pill">📱 Écrans &amp; Numérique</a>
+    <a href="#" class="filter-pill">📚 Lecture</a>
+    <a href="#" class="filter-pill">💻 Codage</a>
+  </div>
+  <p class="articles-count"><strong>2</strong> articles publiés</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     ARTICLES GRID
+     Pour ajouter un article : copiez le bloc
+     <article class="article-card"> ... </article>
+     et adaptez les valeurs (titre, desc, lien, thumb, cats).
+══════════════════════════════════════════════════════ -->
+<div class="articles-grid">
+
+
+  <!-- ═══ ARTICLE 1 — FEATURED (À LA UNE) ═══════════════
+       Thumb classes disponibles : thumb-neuro / thumb-ecrans / thumb-code / thumb-comm
+       Accent classes : accent-blue / accent-orange / accent-green / accent-purple
+       Cat classes    : cat-blue / cat-orange / cat-green / cat-purple / cat-red
+  ═══════════════════════════════════════════════════ -->
+  <a href="article-cerveau-enfant-succeed.html" class="article-card featured">
+    <div class="card-thumb thumb-neuro">
+      <span class="card-thumb-icon" style="position:relative;z-index:1;">🧠</span>
+    </div>
+    <div class="featured-content">
+      <div class="card-accent accent-blue"></div>
+      <div class="card-body">
+        <div class="card-meta-top">
+          <div class="card-cats">
+            <span class="card-cat cat-blue">Neurosciences</span>
+            <span class="card-cat cat-green">Développement</span>
+          </div>
+          <span class="card-badge-pop">✦ À la une</span>
+        </div>
+        <p class="featured-label">&#9679; Article phare</p>
+        <h2 class="card-title">Votre enfant ne sera plus jamais aussi réceptif qu&apos;aujourd&apos;hui — et la science l&apos;explique</h2>
+        <p class="card-desc">
+          Entre 0 et 12 ans, le cerveau forme jusqu&apos;à 1 000 nouvelles connexions synaptiques par seconde. Passé cet âge, il commence à &laquo;&nbsp;élaguer&nbsp;&raquo; irréversiblement ce qu&apos;il n&apos;utilise pas. Cet article explique ce que la neurologie dit des périodes sensibles d&apos;apprentissage — et quelles activités (lecture, musique, sport, dessin, codage) en tirent le meilleur parti pour vos enfants.
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="card-info">
+          <span>⏱ 5 min</span>
+          <span>🔬 Sources citées</span>
+          <span>🇫🇷 Français</span>
+        </div>
+        <span class="read-link">
+          Lire l&apos;article
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h10M6 1l5 5-5 5"/></svg>
+        </span>
+      </div>
+    </div>
+  </a>
+
+
+  <!-- ═══ ARTICLE 2 ═══════════════════════════════════ -->
+  <a href="article-ecrans-enfants.html" class="article-card">
+    <div class="card-thumb thumb-ecrans">
+      <span class="card-thumb-icon" style="position:relative;z-index:1;">📱</span>
+    </div>
+    <div class="card-accent accent-orange"></div>
+    <div class="card-body">
+      <div class="card-meta-top">
+        <div class="card-cats">
+          <span class="card-cat cat-orange">Écrans &amp; Numérique</span>
+        </div>
+        <span class="card-badge-new">Nouveau</span>
+      </div>
+      <h2 class="card-title">6 heures d&apos;écran par jour : faut-il interdire, ou apprendre à s&apos;en servir&nbsp;?</h2>
+      <p class="card-desc">
+        Un enfant francophone passe en moyenne 6h par jour devant un écran. Interdire ne suffit pas — et la recherche le prouve. Découvrez comment transformer ce temps subi en compétences réelles, et pourquoi le type de contenu consommé change tout à l&apos;équation.
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="card-info">
+        <span>⏱ 4 min</span>
+        <span>🔬 Sources citées</span>
+      </div>
+      <span class="read-link">
+        Lire
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h10M6 1l5 5-5 5"/></svg>
+      </span>
+    </div>
+  </a>
+
+
+  <!-- ═══ MODÈLE — COPIEZ CE BLOC POUR CHAQUE NOUVEL ARTICLE ═══
+  <a href="NOM-FICHIER.html" class="article-card">
+    <div class="card-thumb thumb-[neuro|ecrans|code|comm]">
+      <span class="card-thumb-icon" style="position:relative;z-index:1;">EMOJI</span>
+    </div>
+    <div class="card-accent accent-[blue|orange|green|purple]"></div>
+    <div class="card-body">
+      <div class="card-meta-top">
+        <div class="card-cats">
+          <span class="card-cat cat-[blue|orange|green|purple|red]">Catégorie</span>
+        </div>
+        <span class="card-badge-new">Nouveau</span>  ← supprimer si pas nouveau
+      </div>
+      <h2 class="card-title">Titre accrocheur de l&apos;article</h2>
+      <p class="card-desc">Description courte (2-3 phrases) qui donne envie de lire.</p>
+    </div>
+    <div class="card-footer">
+      <div class="card-info">
+        <span>⏱ X min</span>
+        <span>🔬 Sources citées</span>
+      </div>
+      <span class="read-link">
+        Lire
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6h10M6 1l5 5-5 5"/></svg>
+      </span>
+    </div>
+  </a>
+  ═══ FIN MODÈLE ═══════════════════════════════════ -->
+
+
+</div>
+<!-- FIN ARTICLES GRID -->
+
+
+<!-- NOTE DÉVELOPPEUR -->
+<!--
+<div class="add-article-note">
+  <div class="add-note-inner">
+    <div class="add-note-icon">📋</div>
+    <div class="add-note-text">
+    
+      <h4>Ajouter un nouvel article</h4>
+      <p>
+        Copiez le bloc <code>&lt;!-- MODÈLE --&gt;</code> situé dans le code source, collez-le avant <code>&lt;!-- FIN ARTICLES GRID --&gt;</code>, remplissez le titre, la description, le lien et adaptez les classes de couleur. Pensez à mettre à jour le compteur <code>&lt;strong&gt;2&lt;/strong&gt; articles publiés</code> dans la barre de filtres.
+      </p>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span>SUCCEED Education</span>
+      </div>
+      <p class="footer-tagline">&ldquo;L&apos;avenir s&apos;apprend ici.&rdquo;</p>
+      <div class="footer-contact">
+        📧 <a href="mailto:contact@succeed-edu.com">contact@succeed-edu.com</a><br>
+        🌐 <a href="https://www.succeed-edu.com">www.succeed-edu.com</a><br>
+        💬 <a href="https://wa.me/237658688306">+237 658 688 306</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-countries">
+        <span class="fcountry">🇨🇲 Cameroun</span>
+        <span class="fcountry">🇫🇷 France</span>
+        <span class="fcountry">🇨🇦 Canada</span>
+        <span class="fcountry">🇮🇹 Italie</span>
+      </div>
+      <p class="footer-copy">© 2025 SUCCEED Education<br>Apprendre, Grandir, S&apos;épanouir</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
